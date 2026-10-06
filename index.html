@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Fuegos Artificiales</title>
+
+
+</head>
+
+<body>
+
+    <!-- Cielo -->
+   <section id="sky">
+
+    <canvas id="fireworks"></canvas>
+
+    <div id="stars"></div>
+
+    <div id="milky-way"></div>
+
+    <div id="horizon"></div>
+
+</section>
+<div id="question">
+
+    <h1>
+        ¿Te gustaría ver los fuegos artificiales conmigo,
+        <span>Ximena?</span>
+    </h1>
+
+    <div class="buttons">
+
+        <button id="yes">
+            ❤️ Sí
+        </button>
+
+        <button id="no">
+            🤍 No
+        </button>
+
+    </div>
+
+</div>
+
+</body>
+<script src="fireworks.js"></script>
+</html>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    overflow:hidden;
+    background:black;
+    font-family:sans-serif;
+
+}
+
+#sky{
+
+    position:relative;
+
+    width:100vw;
+    height:100vh;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+
+        to bottom,
+
+        #010106 0%,
+        #020611 12%,
+        #06122e 30%,
+        #0b1d45 50%,
+        #1b1b52 72%,
+        #3a245b 88%,
+        #ff8555 100%
+
+    );
+
+}
+
+#sky::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(0,0,0,.05),
+            rgba(0,0,0,.45) 70%,
+            rgba(0,0,0,.65) 100%
+        );
+
+    pointer-events:none;
+
+    z-index:1;
+
+}
+
+#stars{
+    z-index:2;
+}
+
+#milky-way{
+    z-index:3;
+}
+
+#fireworks{
+    z-index:10;
+}
+
+#horizon{
+    z-index:15;
+}
+
+
+#stars{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+}
+
+
+#milky-way{
+
+    position:absolute;
+
+    width:80%;
+
+    height:160%;
+
+    left:15%;
+
+    top:-35%;
+
+    transform:rotate(-25deg);
+
+    background:
+
+    radial-gradient(
+
+        rgba(180,150,255,.35),
+        transparent 70%
+
+    );
+
+    filter:blur(45px);
+
+}
+
+#milky-way{
+    position:absolute;
+    width:110%;
+    height:180%;
+    left:-5%;
+    top:-40%;
+
+    transform:rotate(-18deg);
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(180,150,255,.22) 0%,
+            rgba(130,90,255,.08) 30%,
+            transparent 70%
+        );
+
+    filter:blur(70px);
+
+    opacity:.8;
+}
+
+#horizon::before{
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    bottom:100px;
+
+    transform:translateX(-50%);
+
+    width:700px;
+    height:180px;
+
+    background:radial-gradient(
+        rgba(255,160,110,.55),
+        transparent 70%
+    );
+
+    filter:blur(70px);
+}
+
+#fireworks{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:10;
+
+}
+
+.star{
+
+    position:absolute;
+
+    background:white;
+
+    border-radius:50%;
+
+    animation:twinkle 3s infinite ease-in-out;
+
+    box-shadow:0 0 8px white;
+
+}
+
+@keyframes twinkle{
+
+    0%,100%{
+        opacity:.2;
+        transform:scale(.8);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.3);
+    }
+
+}
+
+#question{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    z-index:100;
+
+    color:white;
+
+}
+
+#question h1{
+
+    font-family:'Cormorant Garamond', serif;
+
+    font-size:3.6rem;
+
+    font-weight:400;
+
+    letter-spacing:1.5px;
+
+    line-height:1.45;
+
+    color:white;
+
+    max-width:900px;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,.12),
+        0 0 25px rgba(0,0,0,.75);
+
+}
+
+#question span{
+
+    color:#ffd8f1;
+
+    font-style:italic;
+
+    font-weight:600;
+
+}
+
+.buttons{
+
+    margin-top:50px;
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+.buttons button{
+
+    font-family:'Poppins', sans-serif;
+
+    font-size:1rem;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    padding:16px 42px;
+
+    border-radius:40px;
+
+    transition:.35s;
+
+}
+
+#yes:hover{
+
+    background:#ff78bf;
+
+    box-shadow:0 0 25px rgba(255,120,191,.45);
+
+}
+
+#no:hover{
+
+    background:rgba(255,255,255,.08);
+
+    box-shadow:0 0 20px rgba(255,255,255,.15);
+
+}
+
+#yes{
+
+    background:#ff5ca8;
+
+    color:white;
+
+}
+
+#no{
+
+    background:#ffffff22;
+
+    color:white;
+
+    border:1px solid white;
+
+}
+
+.buttons button:hover{
+
+    transform:scale(1.08);
+
+}
+
+body.sad #sky{
+
+    transition:3s;
+
+    background:linear-gradient(
+
+        to bottom,
+
+        #000000,
+        #020202,
+        #040404,
+        #060606,
+        #090909
+
+    );
+
+}
+
+body.sad #milky-way{
+
+    opacity:0;
+
+    transition:3s;
+
+}
+
+body.sad #stars{
+
+    opacity:.05;
+
+    transition:3s;
+
+}
+
+#question{
+    transition:1s;
+}
+
+#question.hide{
+
+    opacity:0;
+
+    transform:translateY(-30px) scale(.95);
+
+    filter:blur(8px);
+
+    pointer-events:none;
+
+}
+
+.buttons{
+
+    transition:.8s;
+
+}
+
+.buttons.hide{
+
+    opacity:0;
+
+    transform:scale(.8);
+
+}
+</style>
+
